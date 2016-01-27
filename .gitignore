@@ -1,3 +1,6 @@
 .env
+.python2-env
+
+*.pyc
 __pycache__
 *.local

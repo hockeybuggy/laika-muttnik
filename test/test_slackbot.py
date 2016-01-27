@@ -1,5 +1,9 @@
+from __future__ import print_function
 import unittest
-from unittest.mock import Mock
+try:
+    from unittest.mock import Mock  # Python 3 import
+except:
+    from mock import Mock  # Python 2 import
 
 from slackbot.slackbot import SlackBot
 
