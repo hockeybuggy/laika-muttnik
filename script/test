@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+python slackbot/test_slackbot.py
