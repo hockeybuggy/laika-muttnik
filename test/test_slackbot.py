@@ -11,20 +11,37 @@ from slackbot.slackbot import SlackBot
 class SlackBotTestCase(unittest.TestCase):
     def setUp(self):
         self.token = 'xoxb-00000000000-ddddddddddddddddddddddddd'
+        self.user_id = 'U0MMM0MM'
         self.client_mock = Mock()
         self.subject = SlackBot(self.token, slack_client=self.client_mock)
+        self.subject.slack.server.login_data = {'self': {'id': self.user_id}}
 
     def test_start(self):
         self.assertFalse(self.subject.slack.rtm_connect.called)
-        self.subject.slack.server.login_data = dict(self=dict(id="U0MMM0UW"))
+        self.assertIsNone(self.subject.user_id)
         self.subject.start()
         self.assertTrue(self.subject.slack.rtm_connect.called)
-        self.assertEqual(self.subject.user_id, "U0MMM0UW")
+        self.assertEqual(self.subject.user_id, self.user_id)
 
     def test_user_name(self):
         self.subject.slack.server.username = "TEST"
         name = self.subject.user_name
         self.assertEqual(name, "TEST")
+
+    def test_is_mention(self):
+        self.subject.user_id = self.user_id
+        instr_expected = [
+            ("U0MMM0MM", True),
+            ("U0MMM0MM Speak", True),
+            ("Speak U0MMM0MM ", True),
+            ("<@U0MMM0MM>", True),
+            ("<@U0MMM0MM> Speak", True),
+            ("", False),
+            ("not here", False),
+            ]
+
+        for instr, expected in instr_expected:
+            self.assertEqual(self.subject.is_mention(instr), expected, instr)
 
     def test_listen(self):
         pass
@@ -46,6 +63,13 @@ class SlackBotTestCase(unittest.TestCase):
         self.subject.process_event(event)
 
         self.subject.process_mention.assert_called_with('chan', 'Hello @TEST')
+
+    def test_process_event_bad_event(self):
+        event = dict(type='weird type', channel='chan')
+
+        with self.assertRaises(NotImplementedError):
+            self.subject.process_event(event)
+
 
     def test_process_message(self):
         '''

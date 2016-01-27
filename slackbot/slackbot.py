@@ -1,3 +1,4 @@
+import re
 import time
 from slackclient import SlackClient
 
@@ -6,6 +7,7 @@ class SlackBot(object):
     def __init__(self, token, slack_client=SlackClient):
         self.slack = slack_client(token)
         self.user_id = None
+        self.user_id_re = None
 
     def start(self):
         self.slack.rtm_connect()
@@ -14,6 +16,14 @@ class SlackBot(object):
     @property
     def user_name(self):
         return self.slack.server.username
+
+    def is_mention(self, text):
+        if not self.user_id_re:
+            self.user_id_re = re.compile(r'.*{}.*'.format(self.user_id))
+        result = self.user_id_re.match(text)
+        if result:
+            return True
+        return False
 
     def listen(self):
         # TODO yield from the stream
@@ -26,14 +36,14 @@ class SlackBot(object):
     def process_event(self, event):
         event_type = event.get('type')
         if event_type == 'message':
-            if self.user_id in event.get('text', ''):  # TODO how inefficient is this?
+            if self.is_mention(event.get('text', '')):
                 self.process_mention(event['channel'], event.get('text', ''))
             else:
                 self.process_message(event['channel'], event.get('text', ''))
-        if event_type == 'user_typing':
+        elif event_type == 'user_typing':
             self.process_user_typing(event['channel'], event['user'])
         else:
-            print(event)
+            raise NotImplementedError("Unrecognised event type: {}".format(event_type))
 
     def process_message(self, channel, message):
         raise NotImplementedError
