@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import Mock
-from slackbot import SlackBot
+
+from slackbot.slackbot import SlackBot
 
 
 class SlackBotTestCase(unittest.TestCase):
