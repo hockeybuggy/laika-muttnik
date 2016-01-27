@@ -80,6 +80,10 @@ class SlackBotTestCase(unittest.TestCase):
         #TODO test reconnect_url
         pass
 
+    def test_process_file_public(self):
+        #TODO test reconnect_url
+        pass
+
     def test_process_event_bad_event(self):
         event = dict(type='weird type', channel='chan')
 

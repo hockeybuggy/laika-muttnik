@@ -50,6 +50,8 @@ class SlackBot(object):
             self.process_reconnect_url()
         elif event_type == 'presence_change':
             self.process_presence_change()
+        elif event_type == 'file_public':
+            self.process_file_public()
         else:
             raise NotImplementedError("Unrecognised event type: {}".format(event_type))
 
@@ -69,6 +71,9 @@ class SlackBot(object):
         pass  # No op by default
 
     def process_presence_change(self):
+        pass  # No op by default
+
+    def process_file_public(self):
         pass  # No op by default
 
     def send_to_channel(self, channel, message):
