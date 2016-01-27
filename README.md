@@ -57,8 +57,6 @@ If you want to help please don't hesitate to open an issue or PR.
 - Finish README
 - Remove the sleep usage (async python?)
 - Add tests to Laika
-- Add `re` to the mention check
 
 ## License
 
-TODO
