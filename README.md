@@ -1,5 +1,5 @@
 
-ci badges here
+[![Build Status](https://travis-ci.org/hockeybuggy/laika-muttnik.svg?branch=master)](https://travis-ci.org/hockeybuggy/laika-muttnik)
 
 # Laika Muttnik
 
