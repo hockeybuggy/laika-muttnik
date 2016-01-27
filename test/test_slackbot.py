@@ -66,15 +66,19 @@ class SlackBotTestCase(unittest.TestCase):
 
     def test_process_user_typing(self):
         #TODO test user_typing
+        pass
 
     def test_process_hello(self):
         #TODO test hello
+        pass
 
     def test_process_reconnect_url(self):
         #TODO test reconnect_url
+        pass
 
     def test_process_presence_change(self):
         #TODO test reconnect_url
+        pass
 
     def test_process_event_bad_event(self):
         event = dict(type='weird type', channel='chan')
