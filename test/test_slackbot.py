@@ -64,12 +64,23 @@ class SlackBotTestCase(unittest.TestCase):
 
         self.subject.process_mention.assert_called_with('chan', 'Hello @TEST')
 
+    def test_process_user_typing(self):
+        #TODO test user_typing
+
+    def test_process_hello(self):
+        #TODO test hello
+
+    def test_process_reconnect_url(self):
+        #TODO test reconnect_url
+
+    def test_process_presence_change(self):
+        #TODO test reconnect_url
+
     def test_process_event_bad_event(self):
         event = dict(type='weird type', channel='chan')
 
         with self.assertRaises(NotImplementedError):
             self.subject.process_event(event)
-
 
     def test_process_message(self):
         '''

@@ -35,13 +35,21 @@ class SlackBot(object):
 
     def process_event(self, event):
         event_type = event.get('type')
-        if event_type == 'message':
+        if not event_type:
+            print(event) # TODO wat?
+        elif event_type == 'message':
             if self.is_mention(event.get('text', '')):
                 self.process_mention(event['channel'], event.get('text', ''))
             else:
                 self.process_message(event['channel'], event.get('text', ''))
         elif event_type == 'user_typing':
             self.process_user_typing(event['channel'], event['user'])
+        elif event_type == 'hello':
+            self.process_hello()
+        elif event_type == 'reconnect_url':
+            self.process_reconnect_url()
+        elif event_type == 'presence_change':
+            self.process_presence_change()
         else:
             raise NotImplementedError("Unrecognised event type: {}".format(event_type))
 
@@ -51,7 +59,16 @@ class SlackBot(object):
     def process_mention(self, channel, message):
         raise NotImplementedError
 
+    def process_hello(self):
+        pass  # No op by default
+
+    def process_reconnect_url(self):
+        pass  # No op by default
+
     def process_user_typing(self, channel, user):
+        pass  # No op by default
+
+    def process_presence_change(self):
         pass  # No op by default
 
     def send_to_channel(self, channel, message):
