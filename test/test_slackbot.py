@@ -15,6 +15,7 @@ class SlackBotTestCase(unittest.TestCase):
         self.client_mock = Mock()
         self.subject = SlackBot(self.token, slack_client=self.client_mock)
         self.subject.slack.server.login_data = {'self': {'id': self.user_id}}
+        self.subject.noop = Mock()
 
     def test_start(self):
         self.assertFalse(self.subject.slack.rtm_connect.called)
@@ -44,7 +45,7 @@ class SlackBotTestCase(unittest.TestCase):
             self.assertEqual(self.subject.is_mention(instr), expected, instr)
 
     def test_listen(self):
-        pass
+        pass # TODO
 
     def test_process_event_message(self):
         event = dict(type='message', channel='chan', text='text')
@@ -64,26 +65,6 @@ class SlackBotTestCase(unittest.TestCase):
 
         self.subject.process_mention.assert_called_with('chan', 'Hello @TEST')
 
-    def test_process_user_typing(self):
-        #TODO test user_typing
-        pass
-
-    def test_process_hello(self):
-        #TODO test hello
-        pass
-
-    def test_process_reconnect_url(self):
-        #TODO test reconnect_url
-        pass
-
-    def test_process_presence_change(self):
-        #TODO test reconnect_url
-        pass
-
-    def test_process_file_public(self):
-        #TODO test reconnect_url
-        pass
-
     def test_process_event_bad_event(self):
         event = dict(type='weird type', channel='chan')
 
@@ -94,15 +75,35 @@ class SlackBotTestCase(unittest.TestCase):
         '''
         This defined in the subclasses
         '''
-        with self.assertRaises(NotImplementedError):
-            self.subject.process_message('chan', 'text')
+        self.subject.process_message('chan', 'text')
+        self.assertTrue(self.subject.noop.called)
 
     def test_process_mention(self):
         '''
         This defined in the subclasses
         '''
-        with self.assertRaises(NotImplementedError):
-            self.subject.process_mention('chan', 'text')
+        self.subject.process_mention('chan', 'text')
+        self.assertTrue(self.subject.noop.called)
+
+    def test_process_user_typing(self):
+        self.subject.process_user_typing('chan', 'text')
+        self.assertTrue(self.subject.noop.called)
+
+    def test_process_hello(self):
+        self.subject.process_hello()
+        self.assertTrue(self.subject.noop.called)
+
+    def test_process_reconnect_url(self):
+        self.subject.process_reconnect_url()
+        self.assertTrue(self.subject.noop.called)
+
+    def test_process_presence_change(self):
+        self.subject.process_presence_change()
+        self.assertTrue(self.subject.noop.called)
+
+    def test_process_file_public(self):
+        self.subject.process_file_public()
+        self.assertTrue(self.subject.noop.called)
 
     def test_send_to_channel(self):
         self.assertFalse(self.subject.slack.rtm_connect.called)

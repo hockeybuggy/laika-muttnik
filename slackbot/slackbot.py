@@ -56,25 +56,31 @@ class SlackBot(object):
             raise NotImplementedError("Unrecognised event type: {}".format(event_type))
 
     def process_message(self, channel, message):
-        raise NotImplementedError
+        self.noop()
 
     def process_mention(self, channel, message):
-        raise NotImplementedError
+        self.noop()
 
     def process_hello(self):
-        pass  # No op by default
+        self.noop()
 
     def process_reconnect_url(self):
-        pass  # No op by default
+        self.noop()
 
     def process_user_typing(self, channel, user):
-        pass  # No op by default
+        self.noop()
 
     def process_presence_change(self):
-        pass  # No op by default
+        self.noop()
 
     def process_file_public(self):
-        pass  # No op by default
+        self.noop()
+
+    def noop(self):
+        '''
+        This method is the bot doing nothing
+        '''
+        pass
 
     def send_to_channel(self, channel, message):
         self.slack.rtm_send_message(channel, message)
