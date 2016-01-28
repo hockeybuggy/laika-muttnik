@@ -52,6 +52,8 @@ class SlackBot(object):
             self.process_presence_change()
         elif event_type == 'file_public':
             self.process_file_public()
+        elif event_type == 'file_shared':
+            self.process_file_shared()
         else:
             raise NotImplementedError("Unrecognised event type: {}".format(event_type))
 
@@ -74,6 +76,9 @@ class SlackBot(object):
         self.noop()
 
     def process_file_public(self):
+        self.noop()
+
+    def process_file_shared(self):
         self.noop()
 
     def noop(self):
