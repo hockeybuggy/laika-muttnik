@@ -54,6 +54,8 @@ class SlackBot(object):
             self.process_file_public()
         elif event_type == 'file_shared':
             self.process_file_shared()
+        elif event_type == 'channel_created':
+            self.process_channel_created()
         else:
             raise NotImplementedError("Unrecognised event type: {}".format(event_type))
 
@@ -79,6 +81,9 @@ class SlackBot(object):
         self.noop()
 
     def process_file_shared(self):
+        self.noop()
+
+    def process_channel_created(self):
         self.noop()
 
     def noop(self):
