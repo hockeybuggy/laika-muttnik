@@ -56,6 +56,8 @@ class SlackBot(object):
             self.process_file_shared()
         elif event_type == 'channel_created':
             self.process_channel_created()
+        elif event_type == 'emoji_changed':
+            self.process_emoji_changed()
         else:
             raise NotImplementedError("Unrecognised event type: {}".format(event_type))
 
@@ -84,6 +86,9 @@ class SlackBot(object):
         self.noop()
 
     def process_channel_created(self):
+        self.noop()
+
+    def process_emoji_changed(self):
         self.noop()
 
     def noop(self):

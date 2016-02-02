@@ -113,6 +113,10 @@ class SlackBotTestCase(unittest.TestCase):
         self.subject.process_channel_created()
         self.assertTrue(self.subject.noop.called)
 
+    def test_process_emoji_changed(self):
+        self.subject.process_emoji_changed()
+        self.assertTrue(self.subject.noop.called)
+
     def test_send_to_channel(self):
         self.assertFalse(self.subject.slack.rtm_connect.called)
 
