@@ -109,6 +109,10 @@ class SlackBotTestCase(unittest.TestCase):
         self.subject.process_file_shared()
         self.assertTrue(self.subject.noop.called)
 
+    def test_process_file_changed(self):
+        self.subject.process_file_changed()
+        self.assertTrue(self.subject.noop.called)
+
     def test_process_channel_created(self):
         self.subject.process_channel_created()
         self.assertTrue(self.subject.noop.called)
