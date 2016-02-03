@@ -59,8 +59,8 @@ class SlackBot(object):
             self.process_file_public()
         elif event_type == 'file_shared':
             self.process_file_shared()
-        elif event_type == 'file_changed':
-            self.process_file_changed()
+        elif event_type == 'file_change':
+            self.process_file_change()
         elif event_type == 'channel_joined':
             self.process_channel_joined()
         elif event_type == 'channel_created':
@@ -97,7 +97,7 @@ class SlackBot(object):
     def process_file_shared(self):
         self.noop()
 
-    def process_file_changed(self):
+    def process_file_change(self):
         self.noop()
 
     def process_channel_created(self):
