@@ -12,13 +12,8 @@ class Laika(slackbot.SlackBot):
         super().__init__(settings.SLACK_TOKEN)
         self.start()
 
-    def process_message(self, channel, message):
-        print(message)
-
     def process_mention(self, channel, message):
-        print("I WAS MENTIONED")
-        print(message)
-        # Send 'woof' to channel
+        print("I WAS MENTIONED")  # Send 'woof' to channel
         reply = random.choice(replies)
         self.send_to_channel(channel, reply)
 

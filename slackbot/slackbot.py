@@ -36,7 +36,6 @@ class SlackBot(object):
     def process_event(self, event):
         event_type = event.get('type')
         if not event_type:
-            print(event) # TODO wat?
             self.process_type_free_event()
         elif event_type == 'message':
             if self.is_mention(event.get('text', '')):
