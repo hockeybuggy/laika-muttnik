@@ -13,8 +13,12 @@ class Laika(slackbot.SlackBot):
         self.start()
 
     def process_mention(self, channel, message):
-        print("I WAS MENTIONED")  # Send 'woof' to channel
-        reply = random.choice(replies)
+        if "DON'T WANNA" in message:
+             reply = "http://gph.is/1aRCF94"
+        if "UGH" in message:
+             reply = "http://49.media.tumblr.com/tumblr_l61wni9Xbi1qcwsd8o1_250.gif "
+        else:
+            reply = "NO SPEEKY HUMAN"
         self.send_to_channel(channel, reply)
 
 
