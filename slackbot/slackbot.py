@@ -37,6 +37,7 @@ class SlackBot(object):
         event_type = event.get('type')
         if not event_type:
             print(event) # TODO wat?
+            self.process_type_free_event()
         elif event_type == 'message':
             if self.is_mention(event.get('text', '')):
                 self.process_mention(event['channel'], event.get('text', ''))
@@ -64,6 +65,9 @@ class SlackBot(object):
             self.process_emoji_changed()
         else:
             raise NotImplementedError("Unrecognised event type: {}".format(event_type))
+
+    def process_type_free_event(self):
+        self.noop()
 
     def process_message(self, channel, message):
         self.noop()
