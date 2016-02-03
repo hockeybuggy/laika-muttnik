@@ -26,12 +26,17 @@ class SlackBot(object):
         return False
 
     def listen(self):
+        for event in self._event_generator():
+            self.process_event(event)
+
+    def _event_generator(self):
         # TODO yield from the stream
         while True:
             events = self.slack.rtm_read()
+            if events == []:
+                time.sleep(0.2)
             for event in events:
-                self.process_event(event)
-            time.sleep(1)
+                yield event
 
     def process_event(self, event):
         event_type = event.get('type')

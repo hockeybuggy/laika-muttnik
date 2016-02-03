@@ -45,7 +45,10 @@ class SlackBotTestCase(unittest.TestCase):
             self.assertEqual(self.subject.is_mention(instr), expected, instr)
 
     def test_listen(self):
-        pass # TODO
+        self.subject._event_generator = Mock(return_value=[1, 2, 3])
+        self.subject.process_event = Mock()
+        self.subject.listen()
+        self.assertEqual(self.subject.process_event.call_count, 3)
 
     def test_process_event_message(self):
         event = dict(type='message', channel='chan', text='text')
