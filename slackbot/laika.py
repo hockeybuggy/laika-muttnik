@@ -15,7 +15,7 @@ class Laika(slackbot.SlackBot):
     def process_mention(self, channel, message):
         if "DON'T WANNA" in message:
              reply = "http://gph.is/1aRCF94"
-        if "UGH" in message:
+        elif "UGH" in message:
              reply = "http://49.media.tumblr.com/tumblr_l61wni9Xbi1qcwsd8o1_250.gif "
         else:
             reply = "NO SPEEKY HUMAN"
