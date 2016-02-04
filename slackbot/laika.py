@@ -13,10 +13,18 @@ class Laika(slackbot.SlackBot):
         self.start()
 
     def process_mention(self, channel, message):
-        if "DON'T WANNA" in message:
-             reply = "http://gph.is/1aRCF94"
+        if "LIST" in message:
+             reply = "UGH, DON'T WANNA, SADNESS, NIGHT, HAI"
         elif "UGH" in message:
-             reply = "http://49.media.tumblr.com/tumblr_l61wni9Xbi1qcwsd8o1_250.gif "
+             reply = "http://49.media.tumblr.com/tumblr_l61wni9Xbi1qcwsd8o1_250.gif"
+        elif "DON'T WANNA" in message:
+             reply = "http://49.media.tumblr.com/tumblr_l61wni9Xbi1qcwsd8o1_250.gif"
+        elif "SADNESS" in message:
+             reply = "http://49.media.tumblr.com/tumblr_luqra3t7R21qcwsd8o1_r1_500.gif"
+        elif "NIGHT" in message:
+             reply = "http://45.media.tumblr.com/tumblr_luhngj9X5H1qcwsd8o1_500.gif"
+        elif "HAI" in message:
+             reply = "http://49.media.tumblr.com/tumblr_l61wkkxLnG1qcwsd8o1_250.gif"
         else:
             reply = "NO SPEEKY HUMAN"
         self.send_to_channel(channel, reply)
