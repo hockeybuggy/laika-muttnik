@@ -6,11 +6,9 @@ import importlib
 class SettingsTestCase(unittest.TestCase):
     def setUp(self):
         self._previous_env_value = os.environ.get('SLACK_TOKEN', '')
-        print(self._previous_env_value)
         os.environ['SLACK_TOKEN'] = 'test-env var'
 
-        self.settings = importlib.import_module('slackbot.settings')
-        from slackbot import settings
+        self.settings = importlib.import_module('laika_muttnik.settings')
 
     def tearDown(self):
         os.environ['SLACK_TOKEN'] = self._previous_env_value

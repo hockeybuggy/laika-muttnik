@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-python slackbot/laika.py
+python laika_muttnik/laika.py

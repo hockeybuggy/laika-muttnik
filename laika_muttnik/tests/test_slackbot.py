@@ -5,7 +5,7 @@ try:
 except:
     from mock import Mock  # Python 2 import
 
-from slackbot.slackbot import SlackBot
+from laika_muttnik.slackbot import SlackBot
 
 
 class SlackBotTestCase(unittest.TestCase):
@@ -138,7 +138,3 @@ class SlackBotTestCase(unittest.TestCase):
         self.subject.send_to_channel('channel', 'message')
 
         self.subject.slack.rtm_send_message.assert_called_with('channel', 'message')
-
-
-if __name__ == '__main__':
-    unittest.main()
