@@ -19,13 +19,13 @@ create a virtualenv and source it.
     source .env/bin/activate
 
 
-Install dependancies
+Install dependencies
 
     pip install -r requirements.txt
 
 Run the tests
 
-    ./script/test
+    ./scripts/test
 
 ## Usage
 
