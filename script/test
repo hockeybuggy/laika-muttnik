@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-# python slackbot/test_slackbot.py
-env python -m unittest discover --start-directory test
