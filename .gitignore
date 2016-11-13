@@ -3,4 +3,4 @@
 
 *.pyc
 __pycache__
-*.local
+settings_local.py
