@@ -1,6 +1,7 @@
-.env
+.venv
 .python2-env
 
 *.pyc
 __pycache__
-settings_local.py
+
+.env

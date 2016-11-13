@@ -8,7 +8,7 @@ for now it mostly barks.
 
 ## Requirements
 
-Laika is tested on python 2.7, 3.4, or 3.5
+Tested on python 2.7, 3.5, or 3.6
 
 ## Install
 
@@ -29,24 +29,21 @@ Run the tests
 
 ## Usage
 
-TODO Instructions for running Laika on a server.
 
 Copy the example settings local and add in your slack token
 
-    cp .settings.local.example .settings.local
-    vim .settings.local
+    cp .env.example .env
+    vim .env
 
-Source your environment variables.
+Run the bot
 
-    source .settings.local
+    honcho start
 
 ## Customizing
 
 TODO How to create your own listening bot from Slackbot.
 
 TODO How to create your own notifier bot from Slackbot.
-
-TODO How to install as a dependency
 
 ## Contributing
 
