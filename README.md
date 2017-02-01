@@ -3,8 +3,8 @@
 
 # Laika Muttnik
 
-Like it's namesake, this Slackbot bold goes where no dog has been before. But
-for now it mostly barks.
+Like it's namesake, this Slackbot boldly goes where no dog has been before. But
+for now it's mostly barks.
 
 ## Requirements
 
